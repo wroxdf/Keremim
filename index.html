@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>! KEREM</title>
+    <link rel="icon" type="image/png" href="kizil.png"> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <a href="keremim2.html" class="page-switch-container">
+        <span class="page-switch-text">
+            <i class="fas fa-arrow-right"></i> SAYFA 2
+        </span>
+        
+        <img src="porsche.png" alt="Sayfa 2 Önizleme" class="page-switch-image">
+    </a>
+    
+    <div class="volume-control-container">
+        <div class="volume-button">
+            <i id="volume-icon" class="fas fa-volume-up"></i> 
+        </div>
+        <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider">
+    </div>
+
+    <div id="intro-screen">
+        <h1 class="intro-text">Click</h1>
+    </div>
+    
+    <div class="video-background">
+        <video loop muted autoplay playsinline id="video-bg">
+            <source src="sabrinam.mp4" type="video/mp4">
+            </video>
+    </div>
+
+    <div class="content-overlay">
+        <div class="center-box">
+            
+            <img src="kizil.png" alt="Profil Fotoğrafı 1" class="profile-picture main-profile">
+            
+            <h1 class="logo">! Kerem</h1>
+            <p class="subtitle">Fivem, benim için sadece bir oyun değil; adeta hayatımın bir parçası, ruhumun bir yansıması haline geldi.</p>
+            
+            <div class="discord-profile-card">
+                <img src="dcpp.jpg" alt="Discord Profil Resmi" class="discord-avatar">
+                <div class="discord-info">
+                    <span class="discord-username">dwnrzx</span>
+                    <div class="discord-badges">
+                        <img src="nt.png" alt="Discord Nitro" class="discord-badge">
+                        <img src="hype.png" alt="Hypesquad Brilliance" class="discord-badge">
+                        <img src="devel.png" alt="Geliştirici" class="discord-badge">
+                    </div>
+                    <span class="last-seen"> </span>
+                </div>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://open.spotify.com/user/31par4kx6k32hqnumfleti5yucbm?si=758260d9a52d4163" target="_blank" class="icon-link">
+                    <i class="fab fa-spotify"></i>
+                    <span class="tooltip">Spotify</span>
+                </a>
+                <a href="https://www.instagram.com/keremyzc69" target="_blank" class="icon-link">
+                    <i class="fab fa-instagram"></i>
+                    <span class="tooltip">Instagram</span>
+                </a>
+            </div>
+            
+            <div class="views">
+                <span id="view-count">462</span> Görüntüleme
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="snowfall.js"></script>
+</body>
+</html>

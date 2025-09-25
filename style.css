@@ -1,0 +1,383 @@
+/* ========================================= */
+/* 1. GENEL SAYFA VE GİRİŞ EKRANI STILLERİ */
+/* ========================================= */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
+    /* VİDEONUN KAPSAYICI İÇİNDE SIKIŞMAMASI İÇİN EKLE */
+    box-sizing: border-box; 
+}
+
+/* Giriş ekranı (Click) */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 99999; /* En üstte olmalı */
+    cursor: pointer;
+    opacity: 1; /* Başlangıçta görünür */
+    transition: opacity 1s ease-in-out;
+}
+
+.intro-text {
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#intro-screen.hidden {
+    opacity: 0;
+    pointer-events: none; /* Tıklamayı engelle */
+}
+
+/* ========================================= */
+/* 2. VİDEO ARKA PLAN STİLLERİ (KRİTİK BÖLÜM) */
+/* ========================================= */
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Z-INDEX'İ EN ALT SEVİYEYE ÇEKİYORUZ */
+    z-index: -999; 
+}
+
+/* VİDEONUN KENDİSİNİ AYARLAMA - SADECE BU BÖLÜMÜ DEĞİŞTİRİN */
+#video-bg {
+    /* KRİTİK: Boyutlandırma için max değerleri kullanıyoruz */
+    max-width: 100%; 
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    
+    /* VİDEONUN ORTAYA HİZALANMASI */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Tam merkezleme */
+    
+    /* En boy oranını koruyarak kapsayıcıyı doldurur */
+    object-fit: cover; 
+}
+
+.content-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1; /* Video ve Click ekranının altında kalmaz */
+}
+
+/* ========================================= */
+/* 3. MERKEZ KUTU VE PROFİL STİLLERİ */
+/* ========================================= */
+
+.center-box {
+    background: transparent;
+    padding: 50px 250px; 
+    border-radius: 15px;
+    backdrop-filter: none;
+    box-shadow: none;
+    position: relative;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 500px;
+}
+
+.profile-picture {
+    border-radius: 50%; 
+    border: 3px solid white; 
+    object-fit: cover; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.main-profile {
+    width: 100px; 
+    height: 100px; 
+    position: absolute; 
+    top: -50px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.logo {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    font-style: italic;
+    color: #ccc; /* Mevcut rengi koru */
+    margin-top: 0;
+    
+    /* YENİ KOD: Hafif bir metin gölgesi ekle */
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), /* Beyaz parlaklık */
+                 0 0 15px rgba(255, 255, 255, 0.3); /* Daha geniş hafif parlaklık */
+}
+
+.views {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #aaa;
+}
+
+/* ========================================= */
+/* 4. DISCORD VE IŞIK EFEKTLERİ */
+/* ========================================= */
+
+.discord-profile-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); 
+    gap: 10px;
+}
+.discord-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.discord-info { display: flex; flex-direction: row; align-items: center; gap: 10px; }
+.discord-username { font-weight: bold; font-size: 1.1em; color: #fff; }
+.discord-badges { display: flex; gap: 5px; }
+.discord-badge { width: 20px; height: 20px; }
+.last-seen { font-size: 0.8em; color: #ccc; margin-top: 3px; }
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin-top: 60px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.new-image { max-width: 100%; height: auto; display: block; border-radius: 10px; }
+
+/* Dönen ışık çizgisi */
+.rotating-border {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    animation: rotate-border 4s linear infinite;
+    z-index: 15;
+}
+
+@keyframes rotate-border {
+    0% { border-top-color: #ff0000; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; }
+    25% { border-top-color: transparent; border-right-color: #ff0000; border-bottom-color: transparent; border-left-color: transparent; }
+    50% { border-top-color: transparent; border-right-color: transparent; border-bottom-color: #ff0000; border-left-color: transparent; }
+    75% { border-top-color: transparent; border-right-color: transparent; border-bottom-color: transparent; border-left-color: #ff0000; }
+    100% { border-top-color: #ff0000; border-right-color: transparent; border-bottom-color: transparent; border-left-color: transparent; }
+}
+
+
+/* ========================================= */
+/* 5. SOSYAL İKONLAR VE TOOLTİP STİLLERİ */
+/* ========================================= */
+
+.social-icons {
+    margin: 30px 0 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.icon-link {
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px; 
+    height: 65px; 
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px; 
+    text-decoration: none;
+    color: white; 
+    font-size: 32px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    transition: all 0.3s ease-in-out;
+}
+
+.icon-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-7px) scale(1.1);
+}
+
+/* Platform Bazlı Hover Renkleri */
+.social-icons .icon-link:nth-child(1):hover { color: #1DB954; box-shadow: 0 0 20px #1DB954, 0 0 40px #1DB954; } /* Spotify */
+.social-icons .icon-link:nth-child(2):hover { color: #E1306C; box-shadow: 0 0 20px #C13584, 0 0 40px #F56040; } /* Instagram */
+
+/* Tooltip */
+.tooltip {
+    position: absolute;
+    bottom: -45px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.icon-link:hover .tooltip {
+    opacity: 1; 
+}
+
+
+/* ========================================= */
+/* 6. SES KONTROL STİLLERİ */
+/* ========================================= */
+
+.volume-control-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: auto; 
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    z-index: 1000;
+}
+
+.volume-button { color: #ffffff; font-size: 24px; cursor: pointer; }
+.volume-slider { 
+    width: 100px; -webkit-appearance: none; height: 5px;
+    background: #555; border-radius: 5px; outline: none; opacity: 0.7; transition: opacity .2s;
+}
+.volume-slider:hover { opacity: 1; }
+
+.volume-slider::-webkit-slider-thumb { 
+    -webkit-appearance: none; appearance: none; width: 15px; height: 15px;
+    border-radius: 50%; background: #ffffff; cursor: pointer;
+}
+.volume-slider::-moz-range-thumb {
+    width: 15px; height: 15px; border-radius: 50%; 
+    background: #ffffff; cursor: pointer;
+}
+
+/* ========================================= */
+/* 7. SAYFA GEÇİŞ BUTONU STİLLERİ */
+/* ========================================= */
+
+.page-switch-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 150px;
+    height: auto;
+    
+    border-radius: 8px;
+    text-decoration: none;
+    
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.page-switch-text {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.page-switch-image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.page-switch-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+/* ========================================= */
+/* 8. MOBİL UYUMLULUK DÜZELTMELERİ */
+/* ========================================= */
+
+@media (max-width: 768px) {
+    
+    /* VİDEO DÜZELTMESİ */
+    #video-bg {
+        /* Mobil cihazlarda videoyu hem genişlik hem de yükseklik açısından */
+        /* her zaman kapsayıcıyı doldurmaya zorlar */
+        min-width: 100%; 
+        min-height: 100%;
+        width: 100%;
+        height: 100%;
+        
+        /* Boyutlandırma kuralını korur */
+        object-fit: cover;
+    }
+    
+    /* İsteğe bağlı: Telefondaki içerik kutusunun daha küçük görünmesi */
+    .center-box {
+        padding: 30px 50px; /* Kenar boşluklarını azalt */
+        width: 90%; /* Kutuyu daha esnek yap */
+    }
+}
